@@ -1,0 +1,28 @@
+{% extends "edu.html" %}
+{% block content %}
+  <div class="col-md-8">
+<h1>New Post</h1>
+    <br/>
+    <form  method="post" action="/maiagogo/post/new/#feature" role="form" class="contactForm">
+            	{% csrf_token %}
+            	{% for hidden in form.hidden_fields %}
+            	<div class="form-group">
+            	{{ hidden }}
+            	</div>
+            	{% endfor %}
+            	{% for field in form.visible_fields %}
+            	<div class="form-group">
+            	{{ field.errors }}<br/>
+            	{{ field }}
+            	</div>
+            	{% endfor %}
+            	<br/>
+  <div class="col-md-4 col-sm-4">
+  <p>
+  <button name="submit" type="submit" class="btn btn-block btn-submit">
+            Save Post<i class="fa fa-arrow-right"></i></button>
+          </p>
+</div>
+</form>
+			</div>
+{% endblock %}

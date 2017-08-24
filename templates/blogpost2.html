@@ -1,0 +1,22 @@
+{% extends "edu.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="col-md-10">
+{% for post in posts %}
+<div class="service-box ">
+<div class="detail-info">
+<hgroup>
+<h4 class="sm-txt" >
+<a href="/maiagogo/post/{{post.pk }}#feature">
+   {{ post.title }}
+  </a>
+</h4>
+</hgroup>
+</div>
+<p > <span class="glyphicon glyphicon-time"> </span> Posted by <a href="#">{{ post.author }}</a> on {{ post.published_date }}</p>
+<p >
+   {{ post.text|linebreaksbr }}
+</p>
+</div>
+{% endfor %}
+{% endblock %}     

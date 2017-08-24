@@ -1,0 +1,176 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mentor Education Bootstrap Theme</title>
+    <meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
+    <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+    
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+<link rel="stylesheet" type="text/css" href="{% static 'mentor/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mentor/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mentor/css/imagehover.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mentor/css/style.css' %}">
+    <link href="{% static 'css/bootstrap-fluid-adj.css' %}" rel="stylesheet">
+    <!-- =======================================================
+        Theme Name: Mentor
+        Theme URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
+        Author: BootstrapMade.com
+        Author URL: https://bootstrapmade.com
+    ======================================================= -->
+  </head>
+  <body>
+    <!--Navigation bar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">Men<span>tor</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/maiagogo/">Home</a></li>
+          <li><a href="/maiagogo/weblog/#weblog">Webblog</a></li>
+          <li><a href="/maiagogo/add_category/#feature">Add Category</a></li>
+          <li><a href="/maiagogo/contact/#feature">Contact</a></li>
+          <li><a href="/maiagogo/user_login/#feature">Sign in</a></li>
+          <li class="btn-trial"><a href="/maiagogo/register/#feature">Register</a></li>
+        </ul>
+        </div>
+      </div>
+    </nav>
+    <!--/ Modal box-->
+    <!--Banner-->
+    <div class="banner">
+      <div class="bg-color">
+        <div class="container">
+          <div class="row">
+            <div class="banner-text text-center">
+              <div class="text-border">
+                <h2 class="text-dec">Trust & Quality</h2>
+              </div>
+              <div class="intro-para text-center quote">
+                <p class="big-text">Learning Today . . . Leading Tomorrow.</p>
+                <p class="small-text">Hi and welcome <br>Mentor aimes to take you to the different, useful and oustanding links and resources where you can browse througth different categories. Moreover,it provides a room for blog post where you can do or at least view posts,add a new post, see and comment on other people's posts.  </p>
+                <a href="#footer" class="btn get-quote">GET A QUOTE</a>
+              </div>
+              <a href="#feature" class="mouse-hover"><div class="mouse"></div></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Banner-->
+    <!--Feature-->
+    <section id ="feature" class="section-padding">
+     <div class="container-fluid">
+        <div class="row">
+       <div class="col-md-3">
+      {% block sidebar %}
+ <h2><strong> Categories</strong></h2>
+      <ul class="sidebar-nav">
+          <div id="cats">
+         {% if cats %}
+         {% for cat in cats %}
+         <li><a href="/maiagogo/category/{{ cat.url }}/#feature">{{ cat.name }}</a></li>
+         {% endfor %}
+         {% else %}
+         <li>No categories at present.</li>
+         {% endif %}
+         </div>
+         </ul>
+     {% endblock %}
+     </div>
+      <div class="col-md-9" >
+      {% block content %}
+      
+      
+      {% endblock %}
+      </div>
+    </div>
+    </div>
+    </section>
+    <!--/ feature-->
+    <!--Organisations-->
+    <section id ="organisations" class="section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">         
+              <div class="orga-stru">
+                <h3>65%</h3>
+                <p>Say NO!!</p>
+                <i class="fa fa-male"></i>
+              </div>  
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">         
+              <div class="orga-stru">
+                <h3>20%</h3>
+                <p>Says Yes!!</p>
+                <i class="fa fa-male"></i>
+              </div>  
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">         
+              <div class="orga-stru">
+                <h3>15%</h3>
+                <p>Can't Say!!</p>
+                <i class="fa fa-male"></i>
+              </div>  
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="detail-info">
+              <hgroup>
+                <h3 class="det-txt"> Is inclusive quality education affordable?</h3>
+                <h4 class="sm-txt">(Revised and Updated for 2016)</h4>
+              </hgroup>
+              <p class="det-p">Donec et lectus bibendum dolor dictum auctor in ac erat. Vestibulum egestas sollicitudin metus non urna in eros tincidunt convallis id id nisi in interdum.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+   <section id ="weblog" class="section-padding">
+     {% block blog_block %} 
+        {% endblock %}
+  </section>
+    
+     <!--Footer-->
+    <footer id="footer" class="footer">
+      <div class="container text-center">
+      <ul class="social-links">
+        <li><a href="#link"><i class="fa fa-twitter fa-fw"></i></a></li>
+        <li><a href="#link"><i class="fa fa-facebook fa-fw"></i></a></li>
+        <li><a href="#link"><i class="fa fa-google-plus fa-fw"></i></a></li>
+        <li><a href="#link"><i class="fa fa-dribbble fa-fw"></i></a></li>
+        <li><a href="#link"><i class="fa fa-linkedin fa-fw"></i></a></li>
+      </ul>
+        ©2016 Mentor Theme. All rights reserved
+        <div class="credits">
+            <!-- 
+                All the links in the footer should remain intact. 
+                You can delete the links only if you purchased the pro version.
+                Licensing information: https://bootstrapmade.com/license/
+                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Mentor
+            -->
+            Designed by <a href="https://bootstrapmade.com/">Free Bootstrap Themes</a>
+        </div>
+      </div>
+    </footer>
+    <!--/ Footer-->
+    
+    <script src="{% static 'mentor/js/jquery.min.js' %}"></script>
+    <script src="{% static 'mentor/js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'mentor/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'mentor/js/custom.js' %}"></script>
+    <script src="{% static 'mentor/js/maiagogo-ajax.js' %}"></script>
+  </body>
+</html>
+    

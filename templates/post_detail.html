@@ -1,0 +1,47 @@
+{% extends "edu.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="col-md-10">
+<div class="service-box ">
+<div class="detail-info">
+{% if post.published_date %}
+<p> <i class="glyphicon glyphicon-time"> </i> Posted by <a href="#">{{ post.author }}</a> on {{ post.created_date }}</p>
+{% endif %}
+{% if user.is_authenticated %} 
+<a class ="btn-default" href={% url 'post_edit' pk=post.pk  %}#feature>
+  <i class="glyphicon glyphicon-pencil" > </i></a>
+{% endif %}
+<hgroup>
+<h4 class="sm-txt" >
+<strong>{{ post.title }}</strong>
+</hgroup>
+</div>
+<p>
+   {{ post.text|linebreaksbr }}
+</p>
+<hr>
+<hr>
+<div class="row">
+<div class="col-md-3">
+<a class="btn btn-block btn-submit" href="/maiagogo/post/{{post.pk}}/comment/#feature">Add	comment</a>
+</div>
+</div>
+<br/>
+{% for comment in	post.comments.all	%}
+{%	if user.is_authenticated	or comment.approved_comment	%}
+				<div class="comment">
+			  <div class="date">{{ comment.created_date }}</div>
+			  {%	if	not	comment.approved_comment	%}
+	<a	class="btn	btn-default"	href="/maiagogo/comment/{{comment.pk}}/remove/#blog"><i	class="glyphicon	glyphicon-remove"></i></a>
+	<a	class="btn	btn-default"	href="/maiagogo/comment/{{comment.pk}}/approve/#blog"><i	class="glyphicon	glyphicon-ok"></i></a>
+						{%	endif	%}
+								<strong>{{ comment.author	}}</strong><br/>
+								<p>{{	comment.text|linebreaks	}}</p>
+								<br/>
+				</div>
+					{%	endif	%}
+{%	empty	%}
+				<p>No	comments	hereyet	:(</p>
+		</div>
+{%	endfor	%}
+{% endblock %}

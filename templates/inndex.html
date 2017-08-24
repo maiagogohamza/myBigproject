@@ -1,0 +1,70 @@
+{% extends "edu.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="col-md-4">
+     <h2>Top Five Categories</h2>
+     {% if categories %}
+     <ul>
+        {% for category in categories %}
+        <li><a href="/maiagogo/category/{{ category.url }}/#feature">{{ category.name }}</a></li>
+        {% endfor %}
+     </ul>
+        {% else %}
+          <strong>No categories at present.</strong>
+     {% endif %}
+     </div>
+    <!--/span-->
+   <div class="col-md-8">
+     <h2>Top Five Pages</h2>
+        {% if pages %}
+        <ul>
+        {% for page in pages %}
+           <li><a href="{{ page.url}}">{{ page.title }}</a> - {{ page.category }} ({{ page.views }} view(s))
+        {% endfor %}
+        </ul>
+        {% else %}
+        <strong>No pages at present.</strong>
+        {% endif %}
+      <hr class="bottom-line">
+        </div>
+  <div class="header-section text-center">
+            <h2>Features</h2>
+            <p>Mentor is seen to be like a website for math and programing, particularly python programing  language,it is much beyond that. Mentor provided alot of  services for registered users where you can add any category or add pages to any category as well as cosmetic profile and alot more! </p>
+            <hr class="bottom-line">
+          </div>
+          <div class="feature-info">
+            <div class="fea">
+              <div class="col-md-4">
+                <div class="heading pull-right">
+                  <h4>Latest Technologies</h4>
+                  <p>Donec et lectus bibendum dolor dictum auctor in ac erat. Vestibulum egestas sollicitudin metus non urna in eros tincidunt convallis id id nisi in interdum.</p>
+                </div>
+                <div class="fea-img pull-left">
+                  <i class="fa fa-css3"></i>
+                </div>
+              </div>
+            </div>
+            <div class="fea">
+              <div class="col-md-4">
+                <div class="heading pull-right">
+                  <h4>Toons Background</h4>
+                  <p>Donec et lectus bibendum dolor dictum auctor in ac erat. Vestibulum egestas sollicitudin metus non urna in eros tincidunt convallis id id nisi in interdum.</p>
+                </div>
+                <div class="fea-img pull-left">
+                  <i class="fa fa-drupal"></i>
+                </div>
+              </div>
+            </div>
+            <div class="fea">
+              <div class="col-md-4">
+                <div class="heading pull-right">
+                  <h4>Award Winning Design</h4>
+                  <p>Donec et lectus bibendum dolor dictum auctor in ac erat. Vestibulum egestas sollicitudin metus non urna in eros tincidunt convallis id id nisi in interdum.</p>
+                </div>
+                <div class="fea-img pull-left">
+                  <i class="fa fa-trophy"></i>
+                </div>
+              </div>
+            </div>
+  
+{% endblock %}

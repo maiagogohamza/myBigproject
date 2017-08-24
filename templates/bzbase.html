@@ -1,0 +1,198 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Maiagogo -browser</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+    
+  <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
+  <meta property="og:title" content="">
+  <meta property="og:image" content="">
+  <meta property="og:url" content="">
+  <meta property="og:site_name" content="">
+  <meta property="og:description" content="">
+  
+  <!-- Twitter Cards integration: https://dev.twitter.com/cards/  -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="">
+  <meta name="twitter:title" content="">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="">
+  
+  <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
+  <link href="favicon.ico" rel="shortcut icon">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet"> 
+  
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'blog/lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'blog/lib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'blog/lib/animate-css/animate.min.css' %}" rel="stylesheet">
+  
+  <!-- Main Stylesheet File -->
+   <!-- Theme CSS -->
+   <link href="{% static 'css/bootstrap-fluid-adj.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/clean-blog.min.css' %}" rel="stylesheet" media="screen">
+  <link href="{% static 'blog/css/style.css' %}" rel="stylesheet">
+  
+<!-- =======================================================
+  Theme Name: Imperial
+  Theme URL: https://bootstrapmade.com/imperial-free-onepage-bootstrap-theme/
+  Author: BootstrapMade.com
+  Author URL: https://bootstrapmade.com
+======================================================= -->
+</head>
+
+<body>
+  <div id="preloader"></div>
+  
+<!--==========================
+  Hero Section
+============================-->
+  <section id="hero">
+    <div class="hero-container">
+      <div class="wow fadeIn">
+        <div class="hero-logo">
+        <img class="" src="{% static 'blog/img/logo.png' %}" alt="Imperial">
+        </div>
+        
+        <h1>Local Browser</h1>
+        <h2>Python <span class="rotating">base browser,is for every body, is cool</span></h2>
+        <div class="actions">
+          <a href="/maiagogo/register/#contact" class="btn-get-started">Sign Up</a>
+          <a href="/maiagogo/user_login/#contact" class="btn-services">Login</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<!--==========================
+  Header Section
+============================-->
+  <header id="header">
+    <div class="container">
+    
+      <div id="logo" class="pull-left">
+<a href="#hero"><img src="{% static 'blog/img/logo.png'%}" alt="" title=""/></img></a>
+        <!-- Uncomment below if you prefer to use a text image -->
+        <!--<h1><a href="#hero">Header 1</a></h1>-->
+      </div>
+        
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="navbar-text">Welcome, {{ user.username }}!</li> 
+          <li> <a	href="/maiagogo/add_category/#browser"><span	class="glyphicon	glyphicon-plus"></span></a></li>
+          <li class="menu-has-children"><a href="/maiagogo/">Home</a>
+            <ul>
+              <li><a href="/maiagogo/">Index Home</a></li>
+              <li><a href="/maiagogo/browser_home/">Browser Home</a></li>
+              <li><a href="/maiagogo/blog/">Blog Home</a></li>
+            </ul>
+          </li>
+          <li><a href="/maiagogo/blog/#blog">Blog Posts</a></li>
+          <li><a href="/maiagogo/browser_home/#browser">Browser</a></li>
+          <li><a href="/maiagogo/contact/#contact">Contact</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+    
+<!--==========================
+  About Section
+============================-->
+  <section id="browser">
+    <div class="container wow fadeInUp">
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3">
+      {% block sidebar %}
+      <br/>
+  <br/>
+ <br/>
+ <br/>
+ <h2><strong> Categories</strong></h2>
+      <ul class="sidebar-nav">
+          <div id="cats">
+         {% if cats %}
+         {% for cat in cats %}
+         <li><a href="/maiagogo/category/{{ cat.url }}/#browser">{{ cat.name }}</a></li>
+         {% endfor %}
+         {% else %}
+         <li>No categories at present.</li>
+         {% endif %}
+         </div>
+         </ul>
+     {% endblock %}
+     </div>
+      <div class="col-sm-9" >
+      {% block content %}
+      
+      {% endblock %}
+      </div>
+    </div>
+    </div>
+    </div>
+  </section>
+
+
+<!--==========================
+  Contact Section
+============================--> 
+<section id="contact">
+{% block contact %}
+
+{% endblock %}
+  </section>     
+                
+  
+<!--==========================
+  Footer
+============================--> 
+  <footer id="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="copyright">
+              &copy; Copyright <strong>Maiagogo</strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+              <!-- 
+                All the links in the footer should remain intact. 
+                You can delete the links only if you purchased the pro version.
+                Licensing information: https://bootstrapmade.com/license/
+                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Imperial
+              -->
+              Blog by <a href="#">Maiagogo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </footer><!-- #footer -->
+  
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    
+  <!-- Required JavaScript Libraries -->
+  <script src="{% static 'blog/lib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'blog/lib/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'blog/lib/superfish/hoverIntent.js' %}"></script>
+  <script src="{% static 'blog/lib/superfish/superfish.min.js' %}"></script>
+  <script src="{% static 'blog/lib/morphext/morphext.min.js' %}"></script>
+  <script src="{% static 'blog/lib/wow/wow.min.js' %}"></script>
+  <script src="{% static 'blog/lib/stickyjs/sticky.js' %}"></script>
+  <script src="{% static 'blog/lib/easing/easing.js' %}"></script>
+  
+  <!-- Template Specisifc Custom Javascript File -->
+  <script src="{% static 'blog/js/custom.js' %}"></script>
+  
+  <script src="{% static 'blog/contactform/contactform.js' %}"></script>
+  <script src="{% static 'blog/js/maiagogo-ajax.js' %}"></script>
+  
+    
+</body>
+</html>
