@@ -5,10 +5,7 @@
     {% if category %}
  <p>
 	<b id="like_count">{{ category.likes }}</b> people like this category
-
-	{% if user.is_authenticated %}
 		<button id ="likes" data-catid="{{category.id}}" class="btn get-quote" type="button">Like</button>
-	{% endif %}
     </p>
 
 <br/>
@@ -32,11 +29,9 @@
         <strong>No pages currently in category.</strong><br/>
       {% endif %}
 </div>
-    {% if user.is_authenticated %}
     <div class="col-md-2 col-sm-4">
     <a class="btn btn-block btn-submit" href="/maiagogo/category/{{ category_name_url }}/add_page/#feature">Add a Page <i class="fa fa-arrow-right"></i></a>
     </div>
-    {% endif %}
      {% endif %}
 {% endblock %}
 

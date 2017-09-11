@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
+#from django.python import userAuthentication
 
 
 # Create your views here.
@@ -24,12 +25,12 @@ def browser(request):
   return render(request, 'bzbase.html',{})
 
 def blog(request):
-   cat_list = Category.objects.all()
+   cat_list = get_category_list()
    posts=Post.objects.order_by('-created_date')
    return render(request, 'blogpost2.html',{'posts': posts, 'cats':cat_list})
 
 def post_detail(request, pk):
-    cat_list = Category.objects.all()
+    cat_list = get_category_list()
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'post_detail.html', {'post': post, 'cats':cat_list})
 
@@ -117,7 +118,7 @@ def category(request, category_name_url):
 #Go render the response and return it to the client.
     return render(request, 'category.html', context_dict)
 
-@login_required
+
 def like_category(request):
     cat_id = None
     if request.method == 'GET':
@@ -245,7 +246,7 @@ def user_login(request):
 				# If the account is valid and active, we can log the user in.
 				# We'll send the user back to the homepage.
 				login(request, user)
-				return HttpResponseRedirect('/maiagogo/browser_home/#feature')
+				return HttpResponseRedirect('/maiagogo/#feature')
 			else:
                                 context_dict['cats'] = cat_list
                                 context_dict['disabled_account'] = True
@@ -264,8 +265,15 @@ def user_login(request):
 		# blank dictionary object...
 		return render(request, 'login.html', {'cats':cat_list})
 
+@login_required
+def user_logout(request):
+    # Since we know the user is logged in, we can now just log them out.
+    logout(request)
+    # Take the user back to the homepage.
+    return HttpResponseRedirect('/maiagogo/')
+
 def add_comment_to_post(request, pk):
-    cat_list = Category.objects.all()
+    cat_list = get_category_list()
     post = get_object_or_404(Post,pk=pk)
     if request.method=="POST":
        form = CommentForm(request.POST)
@@ -291,14 +299,14 @@ def comment_remove(request, pk):
     comment.delete()
     return redirect('post_detail', pk=post_pk)
 
-#@login_required
+@login_required
 def add_category(request): 
     cat_list=get_category_list()
     if request.method == 'POST': 
         form = CategoryForm(request.POST) 
         if form.is_valid(): 
             form.save(commit=True) 
-            return HttpResponseRedirect('/maiagogo/browser_home/#browser') 
+            return HttpResponseRedirect('/maiagogo/#feature') 
         else: 
             print form.errors 
     else: 
@@ -306,7 +314,7 @@ def add_category(request):
     return render(request, 'add_category.html', {'form': form ,'cats': cat_list}) 
 
 
-#@login_required
+@login_required
 def add_page(request, category_name_url):
     cat_list = get_category_list()
     context_dict = {}

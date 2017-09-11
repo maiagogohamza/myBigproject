@@ -52,7 +52,7 @@ class UserProfile(models.Model):
         location = models.CharField(max_length=128, blank=True)
         birthday=models.DateField(blank=True, null=True)
         website = models.URLField(blank=True, null=True)
-	picture = models.ImageField(upload_to='profile_pic', blank=True)
+	picture = models.ImageField(upload_to='media', blank=True)
         def __unicode__(self):
           return self.user.username
 	

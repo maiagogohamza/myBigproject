@@ -17,6 +17,7 @@
 <p >
    {{ post.text|linebreaksbr }}
 </p>
+<a	href="{%	url	'post_detail'	pk=post.pk	%}#feature">Comments:	{{	post.comments.count	}}</a>
 </div>
 {% endfor %}
 {% endblock %}     

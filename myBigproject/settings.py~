@@ -19,7 +19,7 @@ TEMPLATE_DIRS = (
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "statics"),
 )
-
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Quick-start development settings - unsuitable for production
@@ -91,7 +91,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/media/'
 AUTH_PROFILE="maiagogo.UserProfile"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
@@ -100,3 +99,4 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False 
 EMAIL_PORT = 1025
+LOGIN_URL = '/maiagogo/user_login/'
