@@ -10,7 +10,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
-from django.python import userAuthentication
+#from django.python import userAuthentication
 
 
 # Create your views here.
