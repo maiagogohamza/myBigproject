@@ -1,0 +1,137 @@
+{% extends "Sagemath.html" %}
+{% block content %}
+            
+<h1>Embedded Sage Cells By</h1><small>Hamza Sani maiagogo mungadi<br/></small>
+<em>"I don't want to have to pay to share with my friends a copy of my math software"<br/>
+"I want have access to my math software via a web-browser from anywhere at anytime"</em>
+
+  <h2>Tangent-Line</h2>
+  Click the “Activate” button below to lunch the Tangent-Line.
+    <div class="mycell"><script type="text/x-sage">
+f(x) = x^3 - x
+df(x) = diff(f(x), x)
+@interact
+def tangent_at_point(x0 = slider(-2, 2, 0.1, -1.5, label='x-coordinate')):
+    """
+    Shows the tangent line at the point x0,
+    using f and its derivative as global variables.
+    """
+    y0 = f(x0)
+    slope = df(x0)
+    # y - y0 = slope*(x - x0) implies
+    # y = slope*x - slope*x0 + y0
+    b = y0 - slope*x0
+    P1 = plot(f, -2, 2, color='blue', ymin=-6, ymax=6, gridlines='minor')
+    P2 = plot(slope*x + b, -2, 2, color='tan', ymin=-6, ymax=6)
+    P3 = point((x0, y0), color='red', size=50)
+    P = P1+P2+P3
+    P.show(figsize=3)
+    print 
+    print "x0=",x0
+    print 'y0= f(x0)=',y0
+    print 'm=f\'(x0)=',slope
+    print'tangent_line=(',slope,')x+(',b,')'
+    return
+
+ </script>
+</div>
+<h2>Polynomial Graph plot</h2>
+<p>click The "Activate" button bellow and select the Polynomial to plot the graph.</p>
+<div class="mycell"><script type="text/x-sage">
+@interact
+def polynomial_grapher(mypoly=selector([x^2-4, x^3-x, x^2+1], label="Polynomial: "),show_grid=False):
+    if show_grid==True:
+       P=plot(mypoly, -3,3, ymin=-5, ymax=5, gridlines="minor")
+    else:
+       P=plot(mypoly, -3,3, ymin=-5, ymax=5)
+    show(P)
+    return
+</script
+></div>
+<h2>The Gerschgorin circle theorem</h2>
+<p>click The "Activate" button bellow and see the Gerschgorin circle theorem in practice.</p>
+<div class="mycell"><script type="text/x-sage">
+from scipy import linalg
+pretty_print(html('<h2>The Gerschgorin circle theorem</h2>'))
+@interact
+def Gerschgorin(Ain = input_box(default='[[10,1,1/10,0],[-1,9,0,1],[1,0,2,3/10],[-.5,0,-.3,1]]', type = str, label = 'A = '), an_size = slider(1,100,1,1.0)):
+    A = sage_eval(Ain)
+    size = len(A)
+    pretty_print(html('$A = ' + latex(matrix(RealField(10),A))+'$'))
+    A = matrix(RealField(10),A)
+    B = [[0 for i in range(size)] for j in range(size)]
+    for i in range(size):
+        B[i][i] = A[i][i]
+    B = matrix(B)
+    frames = []
+
+    centers = [(real(q),imag(q)) for q in [A[i][i] for i in range(size)]]
+    radii_row = [sum([abs(A[i][j]) for j in range(i)+range(i+1,size)]) for i in range(size)]
+    radii_col = [sum([abs(A[j][i]) for j in range(i)+range(i+1,size)]) for i in range(size)]
+    x_min = min([centers[i][0]-radii_row[i] for i in range(size)]+[centers[i][0]-radii_col[i] for i in range(size)])
+    x_max = max([centers[i][0]+radii_row[i] for i in range(size)]+[centers[i][0]+radii_col[i] for i in range(size)])
+    y_min = min([centers[i][1]-radii_row[i] for i in range(size)]+[centers[i][1]-radii_col[i] for i in range(size)])
+    y_max = max([centers[i][1]+radii_row[i] for i in range(size)]+[centers[i][1]+radii_col[i] for i in range(size)])
+
+    if an_size > 1: 
+        t_range= srange(0,1+1/an_size,1/an_size)
+    else:
+        t_range = [1]
+    for t in t_range:
+        C = t*A + (1-t)*B
+        eigs = [CDF(x) for x in linalg.eigvals(C.numpy())]
+        eigpoints = points([(real(q),imag(q)) for q in eigs],pointsize = 10, rgbcolor = (0,0,0))
+        centers = [(real(q),imag(q)) for q in [A[i][i] for i in range(size)]]
+        radii_row = [sum([abs(C[i][j]) for j in range(i)+range(i+1,size)]) for i in range(size)]
+        radii_col = [sum([abs(C[j][i]) for j in range(i)+range(i+1,size)]) for i in range(size)]
+        scale = max([(x_max-x_min),(y_max-y_min)])
+        scale = 7/scale
+        row_circles = sum([circle(centers[i],radii_row[i],fill=True, alpha = .3) for i in range(size)])
+        col_circles = sum([circle(centers[i],radii_col[i],fill=True, rgbcolor = (1,0,0), alpha = .3) for i in range(size)])
+        ft = eigpoints+row_circles+col_circles
+        frames.append(ft)
+    show(animate(frames,figsize = [(x_max-x_min)*scale,(y_max-y_min)*scale], xmin = x_min, xmax=x_max, ymin = y_min, ymax = y_max))
+</script></div>
+<h2>3d-Graphic</h2>
+click the "Activate"buton bellow to lunch an amazing 3d plot.
+<div class="mycell"><script type="text/x-sage">
+S = sphere(size=.5, color='yellow')
+from sage.plot.plot3d.shapes import Cone
+S += Cone(.5, .5, color='red').translate(0,0,.3)
+S += sphere((.45,-.1,.15), size=.1, color='white') + sphere((.51,-.1,.17),size=.05, color='black')
+
+S += sphere((.45, .1,.15),size=.1, color='white') + sphere((.51, .1,.17), size=.05, color='black')
+
+S += sphere((.5,0,-.2),size=.1, color='yellow')
+def f(x,y):
+  return math.exp(x/5)*math.cos(y)
+P = plot3d(f,(-5,5),(-5,5), adaptive=True, color=['red','yellow'], max_depth=10)
+cape_man = P.scale(.2) + S.translate(1,0,0)
+cape_man.show(aspect_ratio=[1,1,1])
+</script></div>
+<h1>Your own computations</h1>
+Type your own or edit Sage computation below and click “Evaluate”.<br/>
+<h3>Using Sage to Graph 2-Dimensionally</h3>
+<p>You can change the function "x^4-3*x^2+2" to any function, but for exponential and multiplication in Polynomial use  sign(^) and (*) respectively and you can change the domain </p>
+    <div class="compute"><script type="text/x-sage">plot(x^4 - 3*x^2+2,-2,2)</script></div>
+<h3>Trigometric plot</h3>
+<div class="compute"><script type="text/x-sage">plot(sin(x), (x, -10, 10))</script></div>
+<h3>Reduced Row Echelon Form (RREF)</h3>
+<p>You only need to change 3,3 (i.e 3 by 3) and the numbers in square braket []</p>
+<div class="compute"><script type="text/x-sage">
+A=matrix(3,3,[2,3,7,9,6,8,4,8,1]) 
+print'Matix'
+print A
+print'Reduce row echolon form'
+print A.rref()
+</script></div>
+<h3>manipulating and solving Polynomial</h3>
+You can chan the value of "y" to your own polynomial.
+<div class="compute"><script type="text/x-sage">
+y=x^2-16
+print'y=',y
+print 'the factor of y is', y.factor()
+print 'the solution of y=',y,'=0'
+solve(y==0, x)
+</script></div>
+{% endblock %}

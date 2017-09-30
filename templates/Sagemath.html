@@ -14,6 +14,20 @@
     <link rel="stylesheet" type="text/css" href="{% static 'mentor/css/imagehover.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'mentor/css/style.css' %}">
     <link href="{% static 'css/bootstrap-fluid-adj.css' %}" rel="stylesheet">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <script>$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  'div.mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+    });
+    </script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+    
     <!-- =======================================================
         Theme Name: Mentor
         Theme URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
@@ -31,12 +45,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/maiagogo/">Men<span>tor</span></a>
+        <a class="navbar-brand" href="#">Sage<span>Math</span></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/maiagogo/">Home</a></li>
-          <li><a href="/maiagogo/Sage/#feature">SagMath</a></li>
+           <li><a href="/maiagogo/Sage/#feature">SagMath</a></li>
           <li><a href="/maiagogo/blog/#feature">Webblog</a></li>
           <li><a href="/maiagogo/add_category/#feature">Add Category</a></li>
           <li><a href="/maiagogo/contact/#feature">Contact</a></li>
@@ -59,12 +73,15 @@
           <div class="row">
             <div class="banner-text text-center">
               <div class="text-border">
-                <h2 class="text-dec">Trust & Quality</h2>
+                <h2 class="text-dec">Python & Maths</h2>
               </div>
               <div class="intro-para text-center quote">
-                <p class="big-text">Learning Today . . . Leading Tomorrow.</p>
-                <p class="small-text">Hi and welcome {{ user.username }}<br>Mentor aimes to take you to the different, useful and oustanding links and resources where you can browse througth different categories. Moreover,it provides a room for blog post where you can do or at least view posts,add a new post, see and comment on other people's posts.  </p>
-                <a href="#footer" class="btn get-quote">GET A QUOTE</a>
+                <p class="big-text">On your web-browser</p>
+                <p class="small-text">Hi and welcome {{ user.username }}<br></p>
+                <p><a href="https://cloud.sagemath.com" class="btn get-quote">SAGEMATHCLOUD</a>
+                <a href="https://www.sagemath.org/tour.html" class="btn get-quote">FEATURE</a>
+                <a href="https://www.sagemath.org" class="btn get-quote">Get Sage</a>
+                </p>
               </div>
               <a href="#feature" class="mouse-hover"><div class="mouse"></div></a>
             </div>
@@ -95,8 +112,7 @@
      </div>
       <div class="col-md-9" >
       {% block content %}
-      
-      
+            
       {% endblock %}
       </div>
     </div>

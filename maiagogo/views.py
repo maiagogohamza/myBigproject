@@ -15,7 +15,8 @@ from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 def Sage(request):
-  return render(request, 'MySage.html',{})
+  cat_list = get_category_list()
+  return render(request, 'MathSage.html',{'cats':cat_list})
 
 def home(request):
   return render(request, 'index.html',{})
